@@ -10,11 +10,14 @@ To read the tidy data from disk, in R the following code should be executed: **r
 To learn about data in TidyData.txt, check the **CodeBook.md** file.
 
 ##Running the script
-* Main function: **runAnalysis** - It is the function to be executed. This function has no required parameters
+* Main function: **runAnalysis** - It is the function to be executed. This function has no required parameters, except to parameter **downloadMethod** which defaults to "auto" and must have the value "curl" to work on UNIX based systems.
+
+Otherwise, the original file must be downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip and has to be named **dataset.zip**, on "project" folder under working directory.
 
 ###Optional parameters
 * **maxRows**: Number of rows to read from training and test data sets. Defaults to -1, indicating all rows must be read. Otherwise maxRows rows from theses data sets will be read.
 * **folder**: a directory under the current working directory where downloaded and created data will be persisted. Defaults to "project".
+* **downloadMethod**: The method to download the original .zip file. Defaults to "auto". On UNIX based systems this parameter has to be "curl"
 
 ##Subfunctions
 * **loadSourceData**: Downloads data from the web if the project folder doesn't contain it, creating required directories if necessary

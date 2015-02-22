@@ -1,6 +1,6 @@
 # R script for the Getting and Cleaning Data course project
 
-runAnalysis <- function(maxRows = -1, folder = "project") {
+runAnalysis <- function(maxRows = -1, folder = "project", downloadMethod = "auto") {
     
     # setup constants
     destFile <- paste(folder, "/dataset.zip", sep = "")
@@ -9,7 +9,9 @@ runAnalysis <- function(maxRows = -1, folder = "project") {
     
     #####
     # loads source data if project folder doesn't contain it
+    # NOTE: uses downloadMethod to determine the method to download file
     # always extract/unzip files to make sure that's original in source dataset folder
+    ####
     loadSourceData <- function() {
         
         if (!file.exists(folder)) {
@@ -19,7 +21,7 @@ runAnalysis <- function(maxRows = -1, folder = "project") {
         if (!file.exists(destFile)) {
             message("downloading source dataset")
             sourceURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-            download.file(sourceURL, destFile, method = "curl")
+            download.file(sourceURL, destFile, method = downloadMethod)
         }
         message("unziping source dataset")
         unzip(zipfile = destFile, exdir = folder)
